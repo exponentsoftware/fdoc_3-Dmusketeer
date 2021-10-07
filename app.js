@@ -261,11 +261,21 @@ function rateProduct(product, rating) {
 rateProduct('Laptop', { userId: 'hey', rate: 5 })
 
 // b.Create a function called *** averageRating *** which calculate the average rating of a product
-
-function averageRating() {
-
+function avarageRating(productId) {
+    let currentProduct = products.filter((product) => product._id == productId)
+    if (!currentProduct.length) {
+        return "Product does not exist"
+    }
+    currentProduct = currentProduct[0];
+    let ratingCount = currentProduct.ratings.length;
+    if (!ratingCount) {
+        return "no ratings available"
+    }
+    let totalRating = currentProduct.ratings.reduce((sum, currentRating) => sum + currentRating.rate, 0);
+    console.log(`rating of the product is ${totalRating / ratingCount}`)
 }
 
+avarageRating("eedfcf")
 // c.Create a function called *** likeProduct ***.This function will helps to like to the product if it is not liked and remove like if it was liked.
 
 function likeProduct(product, userId) {
